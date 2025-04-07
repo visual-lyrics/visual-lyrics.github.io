@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Lyrics</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400;700&display=swap');
+
+        :root {
+            --purple-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+            background: #0f0f0f;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--purple-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.5),
+                         0 0 60px rgba(217, 70, 239, 0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #a1a1aa;
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+            margin: 2rem 0 1rem;
+            text-align: left;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+            font-weight: 600;
+        }
+
+        .video-container {
+            display: grid;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .video-container.grid-three {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .video-container.full-width {
+            grid-template-columns: 1fr;
+        }
+
+        .video-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            background: #18181b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .video-item::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            z-index: -1;
+            background: var(--purple-gradient);
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-item:hover::before {
+            opacity: 1;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            background: #18181b;
+        }
+
+        .dataset-link {
+            display: block;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dataset-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .dataset-link:hover .dataset-image {
+            transform: translateY(-5px);
+        }
+
+        .dataset-link::after {
+            content: 'Click to explore the dataset →';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .dataset-link:hover::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1200px) {
+            .video-container.grid-three {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .video-container.grid-three {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .dataset-link::after {
+                opacity: 1;
+                transform: translateY(0);
+                font-size: 0.8rem;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Visual Lyrics</h1>
+    </header>
+    <main>
+        <h2 class="section-title" id="taylors-version">My Money Don't Jiggle Jiggle Example</h2>
+        <section class="video-container full-width">
+            <div class="video-item">
+                <video controls playsinline>
+                    <source src="https://s3.amazonaws.com/your-bucket/jiggle.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <h2 class="section-title" id="examples">More Examples</h2>
+        <section class="video-container grid-three">
+            <div class="video-item">
+                <video controls playsinline>
+                    <source src="https://s3.amazonaws.com/your-bucket/video1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video controls playsinline>
+                    <source src="https://s3.amazonaws.com/your-bucket/video2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video controls playsinline>
+                    <source src="https://s3.amazonaws.com/your-bucket/video3.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <h2 class="section-title" id="dataset">Dataset</h2>
+        <section class="video-container full-width">
+            <a href="https://visual-lyrics-dataset.vercel.app/" class="dataset-link" target="_blank" rel="noopener noreferrer">
+                <img src="https://s3.amazonaws.com/your-bucket/dataset-preview.jpg" alt="Dataset Preview" class="dataset-image">
+            </a>
+        </section>
+    </main>
+</body>
+</html>
