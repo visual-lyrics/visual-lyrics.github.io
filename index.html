@@ -72,6 +72,15 @@
             grid-template-columns: 1fr;
         }
 
+        .video-container.half-width {
+            grid-template-columns: 1fr;
+            max-width: 700px;
+        }
+
+        .video-container.half-width .video-item {
+            margin: 0 auto;
+        }
+
         .video-item {
             position: relative;
             border-radius: 10px;
@@ -129,21 +138,32 @@
         .dataset-link::after {
             content: 'Click to explore the dataset →';
             position: absolute;
-            bottom: 20px;
-            right: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: rgba(0, 0, 0, 0.75);
             color: white;
             padding: 8px 16px;
             border-radius: 6px;
             font-size: 0.9rem;
             opacity: 0;
-            transform: translateY(10px);
             transition: all 0.3s ease;
         }
 
         .dataset-link:hover::after {
             opacity: 1;
-            transform: translateY(0);
+        }
+
+        .dataset-link:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            border-radius: 10px;
         }
 
         @media (max-width: 1200px) {
@@ -168,10 +188,8 @@
 
             .dataset-link::after {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translate(-50%, -50%);
                 font-size: 0.8rem;
-                bottom: 10px;
-                right: 10px;
             }
         }
     </style>
@@ -179,10 +197,13 @@
 <body>
     <header>
         <h1>Visual Lyrics</h1>
+        <div class="paper-abstract">
+            <p>Your paper abstract goes here.</p>
+        </div>
     </header>
     <main>
         <h2 class="section-title" id="taylors-version">My Money Don't Jiggle Jiggle Example</h2>
-        <section class="video-container full-width">
+        <section class="video-container half-width">
             <div class="video-item">
                 <video controls playsinline>
                     <source src="https://s3.amazonaws.com/your-bucket/jiggle.mp4" type="video/mp4">
@@ -191,6 +212,8 @@
         </section>
 
         <h2 class="section-title" id="examples">More Examples</h2>
+
+        <h3>Image examples</h3>
         <section class="video-container grid-three">
             <div class="video-item">
                 <video autoplay loop muted playsinline>
@@ -208,6 +231,8 @@
                 </video>
             </div>
         </section>
+
+        <h3>Animation examples</h3>
         <section class="video-container grid-three">
             <div class="video-item">
                 <video autoplay loop muted playsinline>
@@ -225,6 +250,8 @@
                 </video>
             </div>
         </section>
+
+        <h3>Visual examples</h3>
         <section class="video-container grid-three">
             <div class="video-item">
                 <video autoplay loop muted playsinline>
