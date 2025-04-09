@@ -43,6 +43,17 @@
             letter-spacing: -0.02em;
         }
 
+        .paper-abstract {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: justify;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
         .section-title {
             font-size: 1.5rem;
             color: #a1a1aa;
@@ -54,6 +65,18 @@
             margin-right: auto;
             padding: 0 1rem;
             font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: #d4d4d8;
+            margin: 1.5rem 0 1rem;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
         }
 
         .video-container {
@@ -141,11 +164,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             color: white;
             padding: 8px 16px;
-            border-radius: 6px;
+            border-radius: 12px;
             font-size: 0.9rem;
+            z-index: 2;
             opacity: 0;
             transition: all 0.3s ease;
         }
@@ -161,9 +186,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             z-index: 1;
-            border-radius: 10px;
+            border-radius: 12px;
         }
 
         @media (max-width: 1200px) {
@@ -187,8 +213,6 @@
             }
 
             .dataset-link::after {
-                opacity: 1;
-                transform: translate(-50%, -50%);
                 font-size: 0.8rem;
             }
         }
@@ -198,7 +222,7 @@
     <header>
         <h1>Visual Lyrics</h1>
         <div class="paper-abstract">
-            <p>Animated lyric videos transform song lyrics into dynamic visual experiences, offering a powerful medium for artistic expression and audience engagement. However, creating these videos is challenging, requiring expertise in audio, typography, graphic design, and animation, making it inaccessible to novices. To address this challenge, we introduce Visual Lyrics, an automatic animated lyric video generation system with an intuitive text-driven interface for creative control. We examined existing lyric videos to distill a taxonomy and design guidelines, informing the design of Visual Lyrics. Our key insight is a multimodal music analysis pipeline based on the taxonomy and leveraging LLM’s strong natural language understanding and code generation capabilities to synthesize creative and semantically meaningful animations. We collected a dataset of over 300 code-driven creative text animations to serve as inspiration for our LLM-driven pipeline, which we open source. In a user study, Visual Lyrics enabled novices to easily create high-quality animated lyric videos with high ratings of enjoyment, inspiration, and exploration.</p>
+            <p>Animated lyric videos transform song lyrics into dynamic visual experiences, offering a powerful medium for artistic expression and audience engagement. However, creating these videos...</p>
         </div>
     </header>
     <main>
@@ -215,59 +239,17 @@
 
         <h3>Image examples</h3>
         <section class="video-container grid-three">
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-fiat.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-hand.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-wine.mp4" type="video/mp4">
-                </video>
-            </div>
+            <!-- Video items here -->
         </section>
 
         <h3>Animation examples</h3>
         <section class="video-container grid-three">
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-folds.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-back.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-see.mp4" type="video/mp4">
-                </video>
-            </div>
+            <!-- Video items here -->
         </section>
 
         <h3>Visual examples</h3>
         <section class="video-container grid-three">
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-money.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-relax.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-sixfeettwo.mp4" type="video/mp4">
-                </video>
-            </div>
+            <!-- Video items here -->
         </section>
 
         <h2 class="section-title" id="dataset">Dataset</h2>
