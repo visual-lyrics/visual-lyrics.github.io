@@ -52,6 +52,7 @@
             max-width: 800px;
             text-align: justify;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: visible;
         }
 
         .section-title {
@@ -145,6 +146,8 @@
             display: block;
             position: relative;
             cursor: pointer;
+            overflow: hidden;
+            border-radius: 10px;
         }
 
         .dataset-image {
@@ -155,41 +158,33 @@
         }
 
         .dataset-link:hover .dataset-image {
-            transform: translateY(-5px);
+            transform: none; /* No upward movement */
         }
 
-        .dataset-link::after {
-            content: 'Click to explore the dataset →';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            z-index: 2;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .dataset-link:hover::after {
-            opacity: 1;
-        }
-
-        .dataset-link:hover::before {
+        .dataset-link::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
             z-index: 1;
+        }
+
+        .dataset-link::after {
+            content: 'Click to explore the dataset →';
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            background: rgba(255, 255, 255, 0.1); /* Glassmorphic effect */
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 16px;
             border-radius: 12px;
+            font-size: 0.9rem;
+            z-index: 2;
         }
 
         @media (max-width: 1200px) {
@@ -239,17 +234,59 @@
 
         <h3>Image examples</h3>
         <section class="video-container grid-three">
-            <!-- Video items here -->
+            <div class="video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-fiat.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-hand.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-wine.mp4" type="video/mp4">
+                </video>
+            </div>
         </section>
 
         <h3>Animation examples</h3>
         <section class="video-container grid-three">
-            <!-- Video items here -->
+            <div class="video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-folds.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-back.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-see.mp4" type="video/mp4">
+                </video>
+            </div>
         </section>
 
         <h3>Visual examples</h3>
         <section class="video-container grid-three">
-            <!-- Video items here -->
+            <div class="video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-money.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-relax.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-sixfeettwo.mp4" type="video/mp4">
+                </video>
+            </div>
         </section>
 
         <h2 class="section-title" id="dataset">Dataset</h2>
