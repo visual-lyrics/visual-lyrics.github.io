@@ -87,7 +87,6 @@
             font-weight: 400;
         }
 
-        /* Redesigned abstract styling */
         .paper-abstract {
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(20px);
@@ -100,7 +99,7 @@
             position: relative;
             overflow: hidden;
         }
-
+    
         .paper-abstract::before {
             content: '';
             position: absolute;
@@ -113,15 +112,31 @@
             z-index: -1;
             animation: rotate 15s linear infinite;
         }
-
+    
         .paper-abstract p {
             line-height: 1.7;
-            font-size: 0.85rem;
+            font-size: 0.75rem; /* Smaller text than before (reduced from 0.85rem) */
             font-family: 'Space Mono', monospace;
             font-weight: 400;
-            text-align: justify;
+            text-align: justify; /* Justified text as requested */
             letter-spacing: -0.03em;
             color: rgba(255, 255, 255, 0.9);
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .paper-abstract {
+                padding: 1.5rem;
+            }
+            
+            .paper-abstract p {
+                font-size: 0.7rem; /* Even smaller on mobile */
+            }
         }
         
         @keyframes rotate {
