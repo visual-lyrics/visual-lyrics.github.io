@@ -79,18 +79,6 @@
             display: inline-block;
         }
 
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--purple-gradient);
-            border-radius: 2px;
-        }
-
         .subtitle {
             font-size: 1.25rem;
             color: var(--text-secondary);
@@ -99,15 +87,16 @@
             font-weight: 400;
         }
 
+        /* Redesigned abstract styling */
         .paper-abstract {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
             border-radius: var(--card-border-radius);
-            padding: 2rem;
+            padding: 1.8rem;
             margin: 1rem auto;
             max-width: 1000px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             overflow: hidden;
         }
@@ -115,13 +104,14 @@
         .paper-abstract::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--purple-gradient);
-            opacity: 0.05;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.08), transparent 70%);
+            opacity: 0.6;
             z-index: -1;
+            animation: rotate 15s linear infinite;
         }
 
         .paper-abstract p {
@@ -131,6 +121,12 @@
             font-weight: 400;
             text-align: justify;
             letter-spacing: -0.03em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .section-title {
@@ -403,15 +399,44 @@
             to { opacity: 1; }
         }
 
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateY(20px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .back-to-top svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: none;
+            stroke: white;
+            stroke-width: 2;
         }
     </style>
 </head>
@@ -428,11 +453,16 @@
     </header>
     
     <main class="container">
-        <section id="system-demo" class="slide-up">
+        <section id="taylors-version" class="slide-up">
             <h2 class="section-title">System Demo</h2>
             <p class="section-description">Visual Lyrics is an automatic animated lyric video generation pipeline with a text-driven interface for creative control. Here is a demonstration.</p>
                         <div class="video-container" style="max-width: 900px; margin: 2rem auto 0;">
-                <div class="video-item">>
+                <div class="video-item">
+                    <video controls playsinline style="width: 100%;">
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-lyrics-demo.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>>
                     <video controls playsinline style="width: 100%;">
                         <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-lyrics-demo.mp4" type="video/mp4">
                     </video>
@@ -487,6 +517,7 @@
             <h3>Visual</h3>
             <p class="section-description">Visual stylization modifies font attribues, such as font family, size, color, or rotation. They can be used for words related to size, color, emotional qualities, or depending on the energy of the vocals (loud/quiet).</p>
             <div class="video-container grid-three">
+                <!-- Commented out for now
                 <div class="video-item">
                     <video autoplay loop muted playsinline>
                         <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-money.mp4" type="video/mp4">
@@ -502,6 +533,7 @@
                         <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-sixfeettwo.mp4" type="video/mp4">
                     </video>
                 </div>
+                -->
             </div>
         </section>
 
@@ -537,6 +569,12 @@
         </section>
     </main>
 
+    <div class="back-to-top">
+        <svg viewBox="0 0 24 24">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+
     <script>
         // Simple animation on scroll
         document.addEventListener('DOMContentLoaded', () => {
@@ -556,6 +594,24 @@
                 element.style.transform = 'translateY(30px)';
                 element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
                 observer.observe(element);
+            });
+            
+            // Back to top button functionality
+            const backToTopButton = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
