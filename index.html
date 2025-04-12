@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visual Lyrics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400;700&display=swap');
-
         :root {
             --purple-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+            --bg-color: #0a0a0f;
+            --card-bg: #18181b;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #d946ef;
+            --transition-normal: all 0.3s ease;
+            --card-border-radius: 16px;
         }
 
         * {
@@ -17,75 +26,146 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Avenir', system-ui, -apple-system, sans-serif;
-            background: #0f0f0f;
-            color: #ffffff;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-primary);
             min-height: 100vh;
-            padding: 2rem;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         header {
+            position: relative;
             text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem 0;
+            padding: 5rem 0 3rem;
+            overflow: hidden;
+        }
+
+        .header-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15), transparent 70%);
+            z-index: -1;
         }
 
         h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4.5rem;
+            font-weight: 800;
             background: var(--purple-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 30px rgba(139, 92, 246, 0.5),
                          0 0 60px rgba(217, 70, 239, 0.3);
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--purple-gradient);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-weight: 400;
         }
 
         .paper-abstract {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem auto;
+            border-radius: var(--card-border-radius);
+            padding: 2.5rem;
+            margin: 1rem auto;
             max-width: 800px;
             text-align: justify;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: visible;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paper-abstract::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--purple-gradient);
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .paper-abstract p {
+            line-height: 1.7;
+            font-size: 0.9rem;
         }
 
         .section-title {
-            font-size: 1.5rem;
-            color: #a1a1aa;
-            text-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
-            margin: 2rem 0 1rem;
-            text-align: left;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 1rem;
-            font-weight: 600;
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin: 4rem 0 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--purple-gradient);
+            border-radius: 1.5px;
         }
 
         h3 {
-            font-size: 1.25rem;
-            color: #d4d4d8;
-            margin: 1.5rem 0 1rem;
-            text-align: left;
-            font-weight: 500;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin: 2.5rem 0 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
         }
 
         section {
-            margin-bottom: 2.5rem;
+            margin-bottom: 4rem;
         }
 
         .video-container {
             display: grid;
             gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
+            margin: 2rem 0;
         }
 
         .video-container.grid-three {
@@ -99,20 +179,18 @@
         .video-container.half-width {
             grid-template-columns: 1fr;
             max-width: 700px;
-        }
-
-        .video-container.half-width .video-item {
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .video-item {
             position: relative;
-            border-radius: 10px;
+            border-radius: var(--card-border-radius);
             overflow: hidden;
-            transition: transform 0.3s ease;
-            background: #18181b;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-                        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: var(--transition-normal);
+            background: var(--card-bg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transform-origin: center bottom;
         }
 
         .video-item::before {
@@ -121,13 +199,13 @@
             inset: -2px;
             z-index: -1;
             background: var(--purple-gradient);
-            border-radius: 10px;
+            border-radius: calc(var(--card-border-radius) + 2px);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: var(--transition-normal);
         }
 
         .video-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
         }
 
         .video-item:hover::before {
@@ -138,8 +216,8 @@
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 10px;
-            background: #18181b;
+            border-radius: var(--card-border-radius);
+            background: var(--card-bg);
         }
 
         .dataset-link {
@@ -147,18 +225,22 @@
             position: relative;
             cursor: pointer;
             overflow: hidden;
-            border-radius: 10px;
+            border-radius: var(--card-border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: var(--transition-normal);
         }
 
         .dataset-image {
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
+            border-radius: var(--card-border-radius);
+            transition: transform 0.5s ease;
+            filter: brightness(0.8);
         }
 
         .dataset-link:hover .dataset-image {
-            transform: none; /* No upward movement */
+            transform: scale(1.03);
+            filter: brightness(0.9);
         }
 
         .dataset-link::before {
@@ -168,133 +250,298 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
             z-index: 1;
+            transition: var(--transition-normal);
+        }
+
+        .dataset-link:hover::before {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
         }
 
         .dataset-link::after {
-            content: 'Click to explore the dataset →';
+            content: 'Explore the dataset →';
             position: absolute;
             bottom: 10%;
             left: 50%;
             transform: translate(-50%, 0);
-            background: rgba(255, 255, 255, 0.1); /* Glassmorphic effect */
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             color: white;
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 0.9rem;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 500;
             z-index: 2;
+            transition: var(--transition-normal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.5px;
+        }
+
+        .dataset-link:hover::after {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translate(-50%, -5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .nav-button {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            text-decoration: none;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         @media (max-width: 1200px) {
             .video-container.grid-three {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
         }
 
         @media (max-width: 768px) {
             body {
-                padding: 1rem;
+                padding: 0;
+            }
+
+            header {
+                padding: 3rem 1rem 2rem;
             }
 
             h1 {
                 font-size: 2.5rem;
             }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            h3 {
+                font-size: 1.3rem;
+            }
 
             .video-container.grid-three {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.5rem;
             }
-
+            
+            .paper-abstract {
+                padding: 1.5rem;
+            }
+            
             .dataset-link::after {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Visual Lyrics</h1>
-        <div class="paper-abstract">
-            <p>Animated lyric videos transform song lyrics into dynamic visual experiences, offering a powerful medium for artistic expression and audience engagement. However, creating these videos is challenging, requiring expertise in audio, typography, graphic design, and animation, making it inaccessible to novices. To address this challenge, we introduce Visual Lyrics, an automatic animated lyric video generation system with an intuitive text-driven interface for creative control. We examined existing lyric videos to distill a taxonomy and design guidelines, informing the design of Visual Lyrics. Our key insight is a multimodal music analysis pipeline based on the taxonomy and leveraging LLM's strong natural language understanding and code generation capabilities to synthesize creative and semantically meaningful animations. We collected a dataset of over 300 code-driven creative text animations to serve as inspiration for our LLM-driven pipeline, which we open source. In a user study, Visual Lyrics enabled novices to easily create high-quality animated lyric videos with high ratings of enjoyment, inspiration, and exploration.</p>
+    <header class="fade-in">
+        <div class="header-background"></div>
+        <div class="container">
+            <h1>Visual Lyrics</h1>
+            <p class="subtitle">Automatic Generation of Animated Lyric Videos</p>
+            
+            <div class="paper-abstract slide-up">
+                <p>Animated lyric videos transform song lyrics into dynamic visual experiences, offering a powerful medium for artistic expression and audience engagement. However, creating these videos is challenging, requiring expertise in audio, typography, graphic design, and animation, making it inaccessible to novices. To address this challenge, we introduce Visual Lyrics, an automatic animated lyric video generation system with an intuitive text-driven interface for creative control. We examined existing lyric videos to distill a taxonomy and design guidelines, informing the design of Visual Lyrics. Our key insight is a multimodal music analysis pipeline based on the taxonomy and leveraging LLM's strong natural language understanding and code generation capabilities to synthesize creative and semantically meaningful animations. We collected a dataset of over 300 code-driven creative text animations to serve as inspiration for our LLM-driven pipeline, which we open source. In a user study, Visual Lyrics enabled novices to easily create high-quality animated lyric videos with high ratings of enjoyment, inspiration, and exploration.</p>
+            </div>
         </div>
     </header>
-    <main>
-        <h2 class="section-title" id="taylors-version">System Demo</h2>
-        <section class="video-container half-width">
-            <div class="video-item">
-                <video controls playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-lyrics-demo.mp4" type="video/mp4">
-                </video>
+    
+    <main class="container">
+        <section id="system-demo" class="slide-up">
+            <h2 class="section-title">System Demo</h2>
+            <div class="video-container" style="max-width: 900px; margin: 0 auto;">
+                <div class="video-item">
+                    <video controls playsinline style="width: 100%;">
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-lyrics-demo.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
         </section>
 
-        <h2 class="section-title" id="examples">More Examples</h2>
+        <section id="examples" class="slide-up">
+            <h2 class="section-title">Examples</h2>
 
-        <h3>Image examples</h3>
-        <section class="video-container grid-three">
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-fiat.mp4" type="video/mp4">
-                </video>
+            <h3>Image Examples</h3>
+            <div class="video-container grid-three">
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-fiat.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-hand.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-wine.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-hand.mp4" type="video/mp4">
-                </video>
+
+            <h3>Animation Examples</h3>
+            <div class="video-container grid-three">
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-folds.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-back.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-see.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/image-wine.mp4" type="video/mp4">
-                </video>
+
+            <h3>Visual Examples</h3>
+            <div class="video-container grid-three">
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-money.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-relax.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-sixfeettwo.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
         </section>
 
-        <h3>Animation examples</h3>
-        <section class="video-container grid-three">
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-folds.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-back.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/animation-see.mp4" type="video/mp4">
-                </video>
+        <section id="dataset" class="slide-up">
+            <h2 class="section-title">Dataset</h2>
+            <div class="video-container full-width">
+                <a href="https://visual-lyrics-dataset.vercel.app/" class="dataset-link" target="_blank" rel="noopener noreferrer">
+                    <img src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/dataset-preview.jpg" alt="Dataset Preview" class="dataset-image">
+                </a>
             </div>
         </section>
-
-        <h3>Visual examples</h3>
-        <section class="video-container grid-three">
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-money.mp4" type="video/mp4">
-                </video>
+        
+        <section id="freeform-examples" class="slide-up">
+            <h2 class="section-title">Freeform User Examples</h2>
+            <div class="video-container grid-three">
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-money.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-relax.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-sixfeettwo.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-relax.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-item">
-                <video autoplay loop muted playsinline>
-                    <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-sixfeettwo.mp4" type="video/mp4">
-                </video>
-            </div>
-        </section>
-
-        <h2 class="section-title" id="dataset">Dataset</h2>
-        <section class="video-container full-width">
-            <a href="https://visual-lyrics-dataset.vercel.app/" class="dataset-link" target="_blank" rel="noopener noreferrer">
-                <img src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/dataset-preview.jpg" alt="Dataset Preview" class="dataset-image">
-            </a>
         </section>
     </main>
+
+    <script>
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.slide-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>
