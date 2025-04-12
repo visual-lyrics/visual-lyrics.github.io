@@ -6,7 +6,7 @@
     <title>Visual Lyrics</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
             --purple-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
@@ -38,6 +38,7 @@
             padding: 0;
             line-height: 1.6;
             overflow-x: hidden;
+            cursor: pointer;
         }
 
         .container {
@@ -102,10 +103,9 @@
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
             border-radius: var(--card-border-radius);
-            padding: 2.5rem;
+            padding: 2rem;
             margin: 1rem auto;
-            max-width: 800px;
-            text-align: justify;
+            max-width: 1000px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
@@ -126,7 +126,11 @@
 
         .paper-abstract p {
             line-height: 1.7;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-family: 'Space Mono', monospace;
+            font-weight: 400;
+            text-align: justify;
+            letter-spacing: -0.03em;
         }
 
         .section-title {
@@ -160,6 +164,13 @@
 
         section {
             margin-bottom: 4rem;
+        }
+        
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin: 0.5rem 0 2rem;
+            width: 100%;
         }
 
         .video-container {
@@ -205,7 +216,7 @@
         }
 
         .video-item:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: none;
         }
 
         .video-item:hover::before {
@@ -262,9 +273,9 @@
         .dataset-link::after {
             content: 'Explore the dataset →';
             position: absolute;
-            bottom: 10%;
+            top: 50%;
             left: 50%;
-            transform: translate(-50%, 0);
+            transform: translate(-50%, -50%);
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             color: white;
@@ -280,7 +291,7 @@
 
         .dataset-link:hover::after {
             background: rgba(255, 255, 255, 0.15);
-            transform: translate(-50%, -5px);
+            transform: translate(-50%, -50%);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
@@ -409,7 +420,6 @@
         <div class="header-background"></div>
         <div class="container">
             <h1>Visual Lyrics</h1>
-            <p class="subtitle">Automatic Generation of Animated Lyric Videos</p>
             
             <div class="paper-abstract slide-up">
                 <p>Animated lyric videos transform song lyrics into dynamic visual experiences, offering a powerful medium for artistic expression and audience engagement. However, creating these videos is challenging, requiring expertise in audio, typography, graphic design, and animation, making it inaccessible to novices. To address this challenge, we introduce Visual Lyrics, an automatic animated lyric video generation system with an intuitive text-driven interface for creative control. We examined existing lyric videos to distill a taxonomy and design guidelines, informing the design of Visual Lyrics. Our key insight is a multimodal music analysis pipeline based on the taxonomy and leveraging LLM's strong natural language understanding and code generation capabilities to synthesize creative and semantically meaningful animations. We collected a dataset of over 300 code-driven creative text animations to serve as inspiration for our LLM-driven pipeline, which we open source. In a user study, Visual Lyrics enabled novices to easily create high-quality animated lyric videos with high ratings of enjoyment, inspiration, and exploration.</p>
@@ -420,8 +430,9 @@
     <main class="container">
         <section id="system-demo" class="slide-up">
             <h2 class="section-title">System Demo</h2>
-            <div class="video-container" style="max-width: 900px; margin: 0 auto;">
-                <div class="video-item">
+            <p class="section-description">Visual Lyrics is an automatic animated lyric video generation pipeline with a text-driven interface for creative control. Here is a demonstration.</p>
+                        <div class="video-container" style="max-width: 900px; margin: 2rem auto 0;">
+                <div class="video-item">>
                     <video controls playsinline style="width: 100%;">
                         <source src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/visual-lyrics-demo.mp4" type="video/mp4">
                     </video>
@@ -430,9 +441,11 @@
         </section>
 
         <section id="examples" class="slide-up">
-            <h2 class="section-title">Examples</h2>
+            <h2 class="section-title">Three Categories of Stylizations</h2>
+            <p class="section-description">Visual Lyrics supports three types of stylizations: image, animation, and visual.</p>
 
-            <h3>Image Examples</h3>
+            <h3>Image</h3>
+            <p class="section-description">Image stylization generates a supporting graphic for the video. They can be used for words that are visually-concrete objects or abstract metaphors that can be associated with concrete objects.</p>
             <div class="video-container grid-three">
                 <div class="video-item">
                     <video autoplay loop muted playsinline>
@@ -451,7 +464,8 @@
                 </div>
             </div>
 
-            <h3>Animation Examples</h3>
+            <h3>Animation</h3>
+            <p class="section-description">Animation stylization animates the word itself. They can be applied to words related to motion or words sung with special vocal attributes like upwards or downwards pitch shift, word elongation, and vibrato.</p>
             <div class="video-container grid-three">
                 <div class="video-item">
                     <video autoplay loop muted playsinline>
@@ -470,7 +484,8 @@
                 </div>
             </div>
 
-            <h3>Visual Examples</h3>
+            <h3>Visual</h3>
+            <p class="section-description">Visual stylization modifies font attribues, such as font family, size, color, or rotation. They can be used for words related to size, color, emotional qualities, or depending on the energy of the vocals (loud/quiet).</p>
             <div class="video-container grid-three">
                 <div class="video-item">
                     <video autoplay loop muted playsinline>
@@ -491,7 +506,8 @@
         </section>
 
         <section id="dataset" class="slide-up">
-            <h2 class="section-title">Dataset</h2>
+            <h2 class="section-title">Visual Lyrics Dataset</h2>
+            <p class="section-description">We collected a dataset of 306 code-driven creative text animations to serve as inspiration for our generation pipeline.</p>
             <div class="video-container full-width">
                 <a href="https://visual-lyrics-dataset.vercel.app/" class="dataset-link" target="_blank" rel="noopener noreferrer">
                     <img src="https://visual-lyrics.s3.us-west-1.amazonaws.com/examples/dataset-preview.jpg" alt="Dataset Preview" class="dataset-image">
@@ -500,7 +516,7 @@
         </section>
         
         <section id="freeform-examples" class="slide-up">
-            <h2 class="section-title">Freeform User Examples</h2>
+            <h2 class="section-title">Examples</h2>
             <div class="video-container grid-three">
                 <div class="video-item">
                     <video autoplay loop muted playsinline>
