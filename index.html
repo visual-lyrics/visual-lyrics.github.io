@@ -41,6 +41,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            font-weight: 300;
         }
 
         .container {
@@ -74,6 +75,7 @@
             background-clip: text;
             color: transparent;
             letter-spacing: -0.02em;
+            cursor: pointer;
         }
 
         .nav-links {
@@ -97,13 +99,13 @@
 
         .hero {
             position: relative;
-            padding: calc(var(--header-height) + 6rem) 0 8rem;
+            padding: calc(var(--header-height) + 6rem) 0 6rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            min-height: 100vh;
+            min-height: 90vh;
             overflow: hidden;
         }
 
@@ -140,41 +142,6 @@
             max-width: 700px;
             margin: 0 auto 3rem;
             font-weight: 400;
-        }
-
-        .paper-abstract {
-            background: rgba(15, 15, 19, 0.7);
-            backdrop-filter: blur(20px);
-            border-radius: var(--card-border-radius);
-            padding: 2.5rem;
-            margin: 1rem auto;
-            max-width: 900px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-    
-        .paper-abstract::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.05), transparent 70%);
-            opacity: 0.8;
-            z-index: -1;
-            animation: rotateSlowly 30s linear infinite;
-        }
-    
-        .paper-abstract p {
-            line-height: 1.8;
-            font-size: 1rem;
-            font-family: 'Space Grotesk', monospace;
-            font-weight: 300;
-            text-align: justify;
-            color: rgba(255, 255, 255, 0.9);
         }
         
         .cta-buttons {
@@ -220,7 +187,7 @@
         }
         
         .section {
-            padding: 8rem 0;
+            padding: 5rem 0;
             position: relative;
         }
 
@@ -235,7 +202,7 @@
 
         .section-title-container {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .section-eyebrow {
@@ -260,7 +227,7 @@
 
         .section-description {
             color: var(--text-secondary);
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-size: clamp(0.9rem, 1.3vw, 1.1rem);
             max-width: 800px;
             margin: 0 auto;
         }
@@ -281,7 +248,7 @@
         }
 
         .style-category {
-            padding: 6rem 0;
+            padding: 4rem 0;
         }
 
         .style-category:not(:last-child) {
@@ -292,7 +259,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .category-icon {
@@ -320,9 +287,9 @@
 
         .category-description {
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 3rem;
-            max-width: 800px;
+            max-width: 100%;
         }
 
         .video-grid {
@@ -377,7 +344,7 @@
 
         .dataset-section {
             position: relative;
-            padding: 8rem 0;
+            padding: 5rem 0;
             text-align: center;
             background: linear-gradient(to bottom, var(--bg-color), var(--card-bg));
         }
@@ -563,14 +530,6 @@
                 min-height: auto;
             }
 
-            .paper-abstract {
-                padding: 1.8rem;
-            }
-
-            .paper-abstract p {
-                font-size: 0.9rem;
-            }
-
             .category-heading {
                 flex-direction: column;
                 align-items: flex-start;
@@ -605,7 +564,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">Visual Lyrics</div>
+        <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Visual Lyrics</div>
         <div class="nav-links">
             <a href="#demo" class="nav-link">Demo</a>
             <a href="#stylizations" class="nav-link">Stylizations</a>
@@ -619,10 +578,6 @@
         <div class="container">
             <h1 class="hero-title">Visual Lyrics</h1>
             <h2 class="hero-subtitle">Transform song lyrics into dynamic visual experiences</h2>
-            
-            <div class="paper-abstract">
-                <p>Animated lyric videos transform song lyrics into dynamic visual experiences, offering a powerful medium for artistic expression and audience engagement. However, creating these videos is challenging, requiring expertise in audio, typography, graphic design, and animation, making it inaccessible to novices. To address this challenge, we introduce Visual Lyrics, an automatic animated lyric video generation system with an intuitive text-driven interface for creative control. We examined existing lyric videos to distill a taxonomy and design guidelines, informing the design of Visual Lyrics. Our key insight is a multimodal music analysis pipeline based on the taxonomy and leveraging LLM's strong natural language understanding and code generation capabilities to synthesize creative and semantically meaningful animations. We collected a dataset of over 300 code-driven creative text animations to serve as inspiration for our LLM-driven pipeline, which we open source. In a user study, Visual Lyrics enabled novices to easily create high-quality animated lyric videos with high ratings of enjoyment, inspiration, and exploration.</p>
-            </div>
             
             <div class="cta-buttons">
                 <a href="#demo" class="cta-button cta-primary">Watch Demo</a>
@@ -651,7 +606,7 @@
         <div class="container">
             <div class="section-title-container">
                     <h2 class="section-title">Diverse Stylizations</h2>
-                <p class="section-description">Visual Lyrics supports three distinct ways of stylizing lyrics: image, animation, and visual.</p>
+                <p class="section-description">Three distinct ways of stylizing lyrics: image, animation, and visual.</p>
             </div>
 
             <div class="style-category">
@@ -800,4 +755,39 @@
         </div>
     </section>
 
+    <a href="#" class="back-to-top" id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 3L4 15h16L12 3z"></path>
+        </svg>
+    </a>
+
+    <script>
+        // Back to top button script
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Make the logo clickable to scroll to top
+        document.querySelector('.logo').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
+</html>
