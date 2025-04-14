@@ -58,7 +58,7 @@
             width: 100%;
             height: var(--header-height);
             backdrop-filter: blur(20px);
-            background: rgba(5, 5, 7, 0.8);
+            background: rgba(5, 5, 7, 0.6);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -86,7 +86,7 @@
         .nav-link {
             color: var(--text-primary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 300;
             font-size: 1rem;
             opacity: 0.8;
             transition: var(--transition-normal);
@@ -137,11 +137,12 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-size: clamp(0.9rem, 1.5vw, 1.2rem);
             color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto 3rem;
-            font-weight: 400;
+            font-weight: 300;
+            white-space: nowrap;
         }
         
         .cta-buttons {
@@ -202,7 +203,7 @@
 
         .section-title-container {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .section-eyebrow {
@@ -222,7 +223,7 @@
             letter-spacing: -0.02em;
             position: relative;
             display: inline-block;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .section-description {
@@ -577,7 +578,7 @@
         <div class="hero-bg"></div>
         <div class="container">
             <h1 class="hero-title">Visual Lyrics</h1>
-            <h2 class="hero-subtitle">Transform song lyrics into dynamic visual experiences</h2>
+            <h2 class="hero-subtitle">Convert songs into dynamic visual experiences</h2>
             
             <div class="cta-buttons">
                 <a href="#demo" class="cta-button cta-primary">Watch Demo</a>
@@ -755,9 +756,17 @@
         </div>
     </section>
 
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Visual Lyrics</div>
+            </div>
+        </div>
+    </footer>
+
     <a href="#" class="back-to-top" id="backToTop">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M12 3L4 15h16L12 3z"></path>
+            <polyline points="18 15 12 9 6 15" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </a>
 
