@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Lyrics</title>
+    <title>Visual Lyrics | Transform Your Music</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -58,7 +58,7 @@
             width: 100%;
             height: var(--header-height);
             backdrop-filter: blur(20px);
-            background: rgba(5, 5, 7, 0.6);
+            background: rgba(5, 5, 7, 0.3);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -335,6 +335,25 @@
             display: block;
             border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
         }
+        
+        /* Ensure videos work properly on mobile */
+        @media (max-width: 767px) {
+            .video-card video {
+                object-fit: cover;
+            }
+            
+            /* Fix for iOS autoplay */
+            video[autoplay]:not([muted]) {
+                display: none;
+            }
+            
+            video {
+                /* Enables inline playback on iOS */
+                -webkit-playsinline: 1;
+                /* For consistency across browsers */
+                playsinline: 1;
+            }
+        }
 
         .examples-grid {
             display: grid;
@@ -567,7 +586,7 @@
     <nav class="navbar">
         <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Visual Lyrics</div>
         <div class="nav-links">
-            <a href="#demo" class="nav-link">Demo</a>
+            <a href="#taylors-version" class="nav-link">Demo</a>
             <a href="#stylizations" class="nav-link">Stylizations</a>
             <a href="#examples" class="nav-link">Examples</a>
             <a href="#dataset" class="nav-link">Dataset</a>
@@ -578,17 +597,17 @@
         <div class="hero-bg"></div>
         <div class="container">
             <h1 class="hero-title">Visual Lyrics</h1>
-            <h2 class="hero-subtitle">Transform songs into dynamic visual experiences</h2>
+            <h2 class="hero-subtitle">Convert songs into dynamic visual experiences</h2>
             
             <div class="cta-buttons">
-                <a href="#demo" class="cta-button cta-primary">Watch Demo</a>
-                <a href="#examples" class="cta-button cta-secondary">See Examples</a>
+                <a href="#taylors-version" class="cta-button cta-primary">Watch Demo</a>
+                <a href="#examples" class="cta-button cta-secondary">View Examples</a>
                 <a href="#dataset" class="cta-button cta-secondary">Explore Dataset</a>
             </div>
         </div>
     </section>
 
-    <section id="demo" class="section">
+    <section id="taylors-version" class="section">
         <div class="container">
             <div class="section-title-container">
                     <h2 class="section-title">Demo</h2>
@@ -755,14 +774,6 @@
             </a>
         </div>
     </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">Visual Lyrics</div>
-            </div>
-        </div>
-    </footer>
 
     <a href="#" class="back-to-top" id="backToTop">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
